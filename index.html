@@ -1,0 +1,597 @@
+<!--
+POWERGHOST — Landing + Logo + Contacto (Telegram + WhatsApp) + Tienda Ecwid
+✅ Listo para Netlify (index.html)
+✅ Logo en header + footer (con glow neon)
+✅ Botones por categoría: Comprar (baja a Ecwid) + Telegram + WhatsApp + Consultar (modal)
+✅ Modal genera mensaje y permite: WhatsApp con texto / Abrir Telegram / Copiar mensaje
+
+⚠️ SOLO CAMBIA 2 COSAS:
+1) WHATSAPP_NUMBER = "34XXXXXXXXX"  (sin + y sin espacios; ej: 34609036804)
+2) 118912352 = 12345678        (tu Store ID real de Ecwid)
+
+IMÁGENES (en /images/):
+logo.png
+streaming.png, musica.png, ia.png, libros.png, videojuegos.png, ropa.png, zapatillas.png
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PowerGhost | Streaming · Música · IA · Libros · Gaming · Deporte</title>
+<meta name="description" content="PowerGhost: Streaming, Música Digital, Inteligencias Artificiales, Libros de Ficción, Videojuegos PS4/PS5, Ropa Deportiva y Zapatillas." />
+
+<style>
+  :root{
+    --bg:#05060a;
+    --card:rgba(255,255,255,0.045);
+    --line:rgba(255,255,255,0.10);
+    --text:#ffffff;
+    --muted:#b8b8b8;
+    --brand:#00eaff;
+    --brand2:#7b5cff;
+    --shadow:0 20px 45px rgba(0,0,0,0.60);
+    --r:20px;
+    --max:1300px;
+    --pad:clamp(16px, 3vw, 28px);
+    --font:'Segoe UI', system-ui, -apple-system, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--text)}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%}
+
+  /* Header */
+  header{
+    text-align:center;
+    padding:56px var(--pad) 26px;
+    background:
+      radial-gradient(1100px 500px at 15% -15%, rgba(0,234,255,.18), transparent 55%),
+      radial-gradient(900px 520px at 100% 0%, rgba(123,92,255,.16), transparent 55%);
+  }
+
+  /* ✅ Logo */
+  .logo-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom:18px;
+  }
+  .logo{
+    max-width:260px;
+    width:100%;
+    height:auto;
+    filter:
+      drop-shadow(0 0 20px rgba(0,234,255,0.35))
+      drop-shadow(0 0 35px rgba(123,92,255,0.25));
+  }
+
+  .pill{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:8px 14px; border-radius:999px;
+    border:1px solid var(--line);
+    color:#cfcfcf; background:rgba(255,255,255,0.04);
+  }
+  .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #fff, var(--brand));
+    box-shadow:0 0 24px rgba(0,234,255,.45);
+  }
+  header h1{
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    margin:14px 0 10px;
+    letter-spacing:1px;
+    background:linear-gradient(90deg,var(--brand),var(--brand2));
+    -webkit-background-clip:text;
+    color:transparent;
+  }
+  header p{
+    color:#aaa;
+    max-width:820px;
+    margin:0 auto;
+    font-size:1.08rem;
+    line-height:1.6;
+  }
+  .top-actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:22px;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:12px 14px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.06);
+    color:#fff;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+    user-select:none;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,0.085)}
+  .btn.primary{
+    border-color:rgba(0,234,255,0.35);
+    background:linear-gradient(135deg, rgba(0,234,255,0.20), rgba(123,92,255,0.18));
+  }
+  .btn.small{padding:10px 12px;border-radius:12px;font-size:0.92rem}
+
+  .btn.wa{
+    border-color:rgba(37,211,102,0.35);
+    background:linear-gradient(135deg, rgba(37,211,102,0.16), rgba(0,234,255,0.08));
+  }
+  .btn.tg{
+    border-color:rgba(34,158,217,0.35);
+    background:linear-gradient(135deg, rgba(34,158,217,0.18), rgba(123,92,255,0.10));
+  }
+
+  /* Layout */
+  .container{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
+  .section-title{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:14px; flex-wrap:wrap;
+    padding: 20px 0 0;
+  }
+  .section-title h3{
+    margin:0;
+    font-size:clamp(1.3rem, 2.4vw, 1.8rem);
+    letter-spacing:.2px;
+  }
+  .section-title p{margin:0;color:#9aa0aa;max-width:70ch;font-size:.95rem;line-height:1.5}
+
+  /* Cards */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:26px;
+    padding:22px 0 10px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:var(--r);
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:.25s;
+    box-shadow:0 0 0 rgba(0,0,0,0);
+    display:flex;
+    flex-direction:column;
+    min-height: 600px;
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+  .card img{width:100%;height:360px;object-fit:cover}
+
+  .card-content{
+    padding:18px 18px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    height:100%;
+  }
+  .card-content h2{margin:0;font-size:1.35rem}
+  .card-content p{margin:0;color:var(--muted);font-size:0.95rem;line-height:1.45}
+  .btn-row{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
+
+  /* Shop */
+  .shop-wrap{
+    margin: 26px 0 54px;
+    border:1px solid rgba(255,255,255,0.10);
+    border-radius:22px;
+    background: rgba(255,255,255,0.03);
+    overflow:hidden;
+  }
+  .shop-head{
+    padding:18px 18px 12px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(135deg, rgba(0,234,255,0.10), rgba(123,92,255,0.08));
+  }
+  .shop-head .actions{
+    display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;
+  }
+  .ecwid-area{padding: 12px 10px 14px}
+
+  /* Footer + logo */
+  footer{
+    text-align:center;
+    padding:34px var(--pad);
+    color:#777;
+    border-top:1px solid rgba(255,255,255,0.10);
+  }
+  .logo-footer{
+    max-width:160px;
+    margin:0 auto 12px;
+    opacity:0.9;
+    filter: drop-shadow(0 0 12px rgba(0,234,255,0.25));
+  }
+
+  /* Modal */
+  .modal-backdrop{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:999;
+  }
+  .modal{
+    width:min(760px, 100%);
+    background:rgba(12,14,22,0.92);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:22px;
+    box-shadow:0 28px 70px rgba(0,0,0,0.70);
+    overflow:hidden;
+  }
+  .modal header{
+    padding:18px 18px 10px;
+    text-align:left;
+  }
+  .modal header h3{margin:0;font-size:1.25rem}
+  .modal header p{margin:8px 0 0;color:var(--muted);font-size:0.95rem}
+  .modal .content{padding:0 18px 18px}
+  .modal .row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:14px;
+  }
+  .modal input, .modal textarea, .modal select{
+    width:100%;
+    padding:12px 12px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.14);
+    background:rgba(0,0,0,0.25);
+    color:#fff;
+    outline:none;
+  }
+  .modal textarea{min-height:120px;resize:vertical}
+  .modal .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .close{
+    margin-left:auto;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:12px;
+    padding:10px 12px;
+    cursor:pointer;
+    font-weight:900;
+    color:#fff;
+  }
+  .hint{color:#9aa0aa;font-size:12px;margin-top:10px}
+
+  @media(max-width:760px){
+    .modal .row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <!-- ✅ LOGO -->
+  <div class="logo-wrap">
+    <img src="assets/logo.png" alt="PowerGhost Logo" class="logo" />
+  </div>
+
+  <div class="pill"><span class="dot"></span> Neon Tech • Digital • Gaming • Deporte</div>
+  <h1>POWERGHOST</h1>
+  <p>Streaming · Música · IA · Libros de Ficción · Videojuegos PS4/PS5 · Ropa Deportiva · Zapatillas</p>
+
+  <div class="top-actions">
+    <button class="btn primary" onclick="openModal('General')">📩 Consultar</button>
+    <a class="btn wa" id="waTop" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a class="btn tg" id="tgTop" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+    <a class="btn" href="#tienda">🛒 Ir a la tienda</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="section-title">
+    <h3>Categorías</h3>
+    <p>Compra desde la tienda (Ecwid) o escríbenos por WhatsApp/Telegram con la categoría ya preparada.</p>
+  </div>
+
+  <section class="grid">
+
+    <article class="card" id="streaming">
+      <img src="assets/streaming.png" alt="Streaming & Entretenimiento Digital">
+      <div class="card-content">
+        <h2>🎬 Streaming & Entretenimiento</h2>
+        <p>Gestión de cuentas y acceso a plataformas premium para ocio doméstico y móvil.</p>
+        <div class="btn-row">
+          <a class="btn primary small" href="#tienda">🛒 Comprar</a>
+          <button class="btn small" onclick="openModal('Streaming')">📩 Consultar</button>
+          <a class="btn wa small waBtn" data-cat="Streaming" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn tg small tgBtn" data-cat="Streaming" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="musica">
+      <img src="assets/musica.png" alt="Música Digital">
+      <div class="card-content">
+        <h2>🎵 Música Digital</h2>
+        <p>Plataformas musicales con bibliotecas amplias, optimizadas para móvil, PC y smart devices.</p>
+        <div class="btn-row">
+          <a class="btn primary small" href="#tienda">🛒 Comprar</a>
+          <button class="btn small" onclick="openModal('Música')">📩 Consultar</button>
+          <a class="btn wa small waBtn" data-cat="Música" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn tg small tgBtn" data-cat="Música" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="ia">
+      <img src="assets/ia.png" alt="Inteligencias Artificiales">
+      <div class="card-content">
+        <h2>🤖 Inteligencias Artificiales</h2>
+        <p>Herramientas de IA para productividad, creatividad y aprendizaje (usuarios y creadores).</p>
+        <div class="btn-row">
+          <a class="btn primary small" href="#tienda">🛒 Comprar</a>
+          <button class="btn small" onclick="openModal('IA')">📩 Consultar</button>
+          <a class="btn wa small waBtn" data-cat="IA" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn tg small tgBtn" data-cat="IA" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="libros">
+      <img src="assets/libros.png" alt="Libros de Ficción">
+      <div class="card-content">
+        <h2>📚 Libros de Ficción</h2>
+        <p>Narrativa contemporánea, misterio, thriller, romance y más. Formato digital y físico.</p>
+        <div class="btn-row">
+          <a class="btn primary small" href="#tienda">🛒 Comprar</a>
+          <button class="btn small" onclick="openModal('Libros')">📩 Consultar</button>
+          <a class="btn wa small waBtn" data-cat="Libros" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn tg small tgBtn" data-cat="Libros" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="videojuegos">
+      <img src="assets/videojuegos.png" alt="Videojuegos PS4 & PS5">
+      <div class="card-content">
+        <h2>🎮 Videojuegos PS4 & PS5</h2>
+        <p>Títulos actuales, clásicos y contenido digital. Para gamers casuales y exigentes.</p>
+        <div class="btn-row">
+          <a class="btn primary small" href="#tienda">🛒 Comprar</a>
+          <button class="btn small" onclick="openModal('Videojuegos')">📩 Consultar</button>
+          <a class="btn wa small waBtn" data-cat="Videojuegos" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn tg small tgBtn" data-cat="Videojuegos" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="ropa">
+      <img src="assets/ropa.png" alt="Ropa Deportiva Oficial">
+      <div class="card-content">
+        <h2>👕 Ropa Deportiva Oficial</h2>
+        <p>Camisetas NBA, NFL, ligas de fútbol y selecciones. Para fans y coleccionistas.</p>
+        <div class="btn-row">
+          <a class="btn primary small" href="#tienda">🛒 Comprar</a>
+          <button class="btn small" onclick="openModal('Ropa')">📩 Consultar</button>
+          <a class="btn wa small waBtn" data-cat="Ropa" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn tg small tgBtn" data-cat="Ropa" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="zapatillas">
+      <img src="assets/zapatillas.png" alt="Zapatillas Deportivas">
+      <div class="card-content">
+        <h2>👟 Zapatillas Deportivas</h2>
+        <p>Modelos actuales para uso urbano y deportivo: comodidad, estilo y rendimiento.</p>
+        <div class="btn-row">
+          <a class="btn primary small" href="#tienda">🛒 Comprar</a>
+          <button class="btn small" onclick="openModal('Zapatillas')">📩 Consultar</button>
+          <a class="btn wa small waBtn" data-cat="Zapatillas" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn tg small tgBtn" data-cat="Zapatillas" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <section id="tienda" class="shop-wrap">
+    <div class="shop-head">
+      <div class="section-title" style="padding:0;">
+        <h3>🛒 Tienda (Ecwid)</h3>
+        <p>Compra directamente aquí. Activa pagos/envíos desde tu panel de Ecwid.</p>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="#tienda" onclick="openCart()">🧺 Ver carrito</a>
+        <button class="btn" onclick="openModal('General')">📩 Consultar</button>
+        <a class="btn wa" id="waShop" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="btn tg" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">📩 Telegram</a>
+      </div>
+    </div>
+
+    <div class="ecwid-area">
+      <div id="my-store-118912352"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <img src="assets/logo.png" alt="PowerGhost Logo" class="logo-footer" />
+  <div>© <span id="year"></span> PowerGhost · Digital & Lifestyle Brand</div>
+</footer>
+
+<!-- MODAL CONTACTO -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="backdropClose(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <header>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <div style="font-weight:900; letter-spacing:.3px;">POWERGHOST</div>
+        <button class="close" onclick="closeModal()">✕ Cerrar</button>
+      </div>
+      <h3 id="modalTitle">Contacto</h3>
+      <p>Genera el mensaje y envíalo por WhatsApp o Telegram (o cópialo).</p>
+    </header>
+
+    <div class="content">
+      <div class="row">
+        <div>
+          <label for="nombre">Nombre</label><br/>
+          <input id="nombre" placeholder="Tu nombre" autocomplete="name" />
+        </div>
+        <div>
+          <label for="categoria">Categoría</label><br/>
+          <select id="categoria">
+            <option>General</option>
+            <option>Streaming</option>
+            <option>Música</option>
+            <option>IA</option>
+            <option>Libros</option>
+            <option>Videojuegos</option>
+            <option>Ropa</option>
+            <option>Zapatillas</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="email">Email (opcional)</label><br/>
+          <input id="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" />
+        </div>
+        <div>
+          <label for="preferencia">Preferencia</label><br/>
+          <select id="preferencia">
+            <option>Quiero comprar</option>
+            <option>Quiero información</option>
+            <option>Disponibilidad / precio</option>
+            <option>Problema con un pedido</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <label for="mensaje">Mensaje</label><br/>
+        <textarea id="mensaje" placeholder="Cuéntanos qué buscas (plataforma, talla, juego, modelo, etc.)"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn wa" onclick="sendWhatsApp()">💬 Enviar por WhatsApp</button>
+        <button class="btn tg" onclick="openTelegram()">📩 Abrir Telegram</button>
+        <button class="btn primary" onclick="copyMessage()">📋 Copiar mensaje</button>
+      </div>
+
+      <div class="hint" id="hint">
+        WhatsApp abre con el mensaje ya escrito. Telegram abre @DPremiumorg (pega el mensaje).
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // =========================
+  // ✅ CONFIGURACIÓN
+  // =========================
+  const WHATSAPP_NUMBER = "34674949362";  // <-- TU NÚMERO REAL. Ej: "34609036804"
+  const TELEGRAM_USER   = "DPremiumorg";
+  const 118912352  = "118912352"; // <-- TU STORE ID REAL (solo números)
+
+  // Año
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // WhatsApp link builder
+  function buildWaLink(text){
+    const base = "https://wa.me/" + WHATSAPP_NUMBER;
+    const msg = encodeURIComponent(text);
+    return base + "?text=" + msg;
+  }
+
+  // Top & shop WhatsApp
+  document.getElementById("waTop").href  = buildWaLink("Hola, quiero información general sobre PowerGhost.");
+  document.getElementById("waShop").href = buildWaLink("Hola, quiero información sobre la tienda de PowerGhost (Ecwid).");
+
+  // Card WhatsApp
+  document.querySelectorAll(".waBtn").forEach(btn=>{
+    const cat = btn.getAttribute("data-cat");
+    btn.href = buildWaLink(`Hola, quiero información sobre ${cat} en PowerGhost.`);
+  });
+
+  // Modal
+  const backdrop = document.getElementById("modalBackdrop");
+  const modalTitle = document.getElementById("modalTitle");
+  const categoriaSelect = document.getElementById("categoria");
+
+  function openModal(cat){
+    backdrop.style.display = "flex";
+    modalTitle.textContent = `Contacto — ${cat}`;
+    categoriaSelect.value = cat;
+    document.getElementById("hint").textContent =
+      "WhatsApp abre con el mensaje escrito. Telegram abre @DPremiumorg (pega el mensaje).";
+  }
+  function closeModal(){ backdrop.style.display = "none"; }
+  function backdropClose(e){ if(e.target === backdrop) closeModal(); }
+
+  function buildMessage(){
+    const nombre = (document.getElementById("nombre").value || "").trim();
+    const email = (document.getElementById("email").value || "").trim();
+    const cat = document.getElementById("categoria").value;
+    const pref = document.getElementById("preferencia").value;
+    const msg = (document.getElementById("mensaje").value || "").trim();
+
+    let out = "Hola, soy " + (nombre ? nombre : "un cliente") + ".\n\n";
+    out += "🔹 Categoría: " + cat + "\n";
+    out += "🔹 Motivo: " + pref + "\n";
+    if(email) out += "🔹 Email: " + email + "\n";
+    out += "\n📝 Detalles:\n" + (msg ? msg : "Quiero info (precios, disponibilidad y cómo funciona).");
+    out += "\n\n— Enviado desde la web de PowerGhost";
+    return out;
+  }
+
+  function sendWhatsApp(){
+    const text = buildMessage();
+    window.open(buildWaLink(text), "_blank", "noopener");
+  }
+
+  function openTelegram(){
+    window.open("https://t.me/" + TELEGRAM_USER, "_blank", "noopener");
+    document.getElementById("hint").textContent = "Telegram abierto. Pulsa “Copiar mensaje” y pégalo allí.";
+  }
+
+  async function copyMessage(){
+    const text = buildMessage();
+    try{
+      await navigator.clipboard.writeText(text);
+      document.getElementById("hint").textContent = "✅ Mensaje copiado. Pégalo en Telegram o donde quieras.";
+    }catch(e){
+      document.getElementById("hint").textContent = "❌ No se pudo copiar automáticamente. Copia manualmente el texto.";
+    }
+  }
+
+  // Ecwid: abrir carrito (hash típico)
+  function openCart(){
+    location.hash = "#!/~/cart";
+    document.getElementById("tienda").scrollIntoView({behavior:"smooth"});
+  }
+</script>
+
+<script src="https://app.ecwid.com/script.js?118912352&data_platform=code&data_date=2025-12-26" charset="utf-8"></script>
+<script>
+  if (typeof xProductBrowser !== "undefined") {
+    xProductBrowser(
+      "categoriesPerRow=3",
+      "views=grid(20,3) list(60) table(60)",
+      "categoryView=grid",
+      "searchView=list",
+      "id=my-store-" + 118912352
+    );
+  }
+</script>
+
+</body>
+</html>
