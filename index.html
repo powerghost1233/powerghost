@@ -39,7 +39,6 @@
       filter: drop-shadow(0 0 20px rgba(0,234,255,0.35))
               drop-shadow(0 0 35px rgba(123,92,255,0.25));
     }
-
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:8px 14px; border-radius:999px;
@@ -74,7 +73,6 @@
       margin-top:22px;
     }
 
-    /* Buttons */
     .btn{
       display:inline-flex;
       align-items:center;
@@ -106,11 +104,9 @@
       background:linear-gradient(135deg, rgba(34,158,217,0.18), rgba(123,92,255,0.10));
     }
 
-    /* Icons */
     .ico{width:18px;height:18px;display:inline-block}
     .ico svg{width:18px;height:18px;display:block}
 
-    /* Layout */
     .container{max-width:var(--max); margin:0 auto; padding:0 var(--pad)}
     .section-title{
       display:flex; align-items:flex-end; justify-content:space-between;
@@ -124,7 +120,6 @@
     }
     .section-title p{margin:0;color:#9aa0aa;max-width:70ch;font-size:.95rem;line-height:1.5}
 
-    /* Cards */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -155,7 +150,6 @@
     .card-content p{margin:0;color:var(--muted);font-size:0.95rem;line-height:1.45}
     .btn-row{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
 
-    /* Shop */
     .shop-wrap{
       margin: 26px 0 54px;
       border:1px solid rgba(255,255,255,0.10);
@@ -171,7 +165,6 @@
     .shop-head .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
     .ecwid-area{padding: 12px 10px 14px}
 
-    /* Footer */
     footer{
       text-align:center;
       padding:34px var(--pad);
@@ -183,7 +176,7 @@
       filter: drop-shadow(0 0 12px rgba(0,234,255,0.25));
     }
 
-    /* Modal */
+    /* Modal simple */
     .modal-backdrop{
       position:fixed; inset:0;
       background:rgba(0,0,0,0.65);
@@ -194,36 +187,21 @@
       z-index:999;
     }
     .modal{
-      width:min(760px, 100%);
+      width:min(560px, 100%);
       background:rgba(12,14,22,0.92);
       border:1px solid rgba(255,255,255,0.12);
       border-radius:22px;
       box-shadow:0 28px 70px rgba(0,0,0,0.70);
       overflow:hidden;
     }
-    .modal header{padding:18px 18px 10px;text-align:left}
-    .modal header h3{margin:0;font-size:1.25rem}
-    .modal header p{margin:8px 0 0;color:var(--muted);font-size:0.95rem}
-    .modal .content{padding:0 18px 18px}
-    .modal .row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:14px;
+    .modal-head{
+      padding:18px 18px 12px;
+      border-bottom:1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(135deg, rgba(0,234,255,0.10), rgba(123,92,255,0.08));
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .modal input, .modal textarea, .modal select{
-      width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.14);
-      background:rgba(0,0,0,0.25);
-      color:#fff;
-      outline:none;
-    }
-    .modal textarea{min-height:120px;resize:vertical}
-    .modal .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .modal-head h3{margin:0;font-size:1.15rem}
     .close{
-      margin-left:auto;
       background:rgba(255,255,255,0.06);
       border:1px solid rgba(255,255,255,0.14);
       border-radius:12px;
@@ -232,11 +210,10 @@
       font-weight:900;
       color:#fff;
     }
+    .modal-body{padding:16px 18px 18px}
+    .modal-body p{margin:0 0 14px;color:var(--muted);line-height:1.5}
+    .modal-actions{display:flex; gap:10px; flex-wrap:wrap}
     .hint{color:#9aa0aa;font-size:12px;margin-top:10px}
-
-    @media(max-width:760px){
-      .modal .row{grid-template-columns:1fr}
-    }
   </style>
 </head>
 
@@ -252,11 +229,10 @@
   <p>Streaming · Música · IA · Libros de Ficción · Videojuegos PS4/PS5 · Ropa Deportiva · Zapatillas</p>
 
   <div class="top-actions">
-    <button class="btn primary" onclick="openModal('General')">📩 Consultar</button>
+    <button class="btn primary" onclick="openModal()">📩 Contactar</button>
 
     <a class="btn wa" id="waTop" href="#" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
       <span class="ico" aria-hidden="true">
-        <!-- WhatsApp SVG -->
         <svg viewBox="0 0 32 32" fill="none">
           <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
           <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
@@ -265,9 +241,8 @@
       WhatsApp
     </a>
 
-    <a class="btn tg" id="tgTop" href="https://t.me/DPremiumorg" target="_blank" rel="noopener" aria-label="Contactar por Telegram">
+    <a class="btn tg" id="tgTop" href="#" target="_blank" rel="noopener" aria-label="Contactar por Telegram">
       <span class="ico" aria-hidden="true">
-        <!-- Telegram SVG -->
         <svg viewBox="0 0 24 24" fill="none">
           <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
         </svg>
@@ -280,14 +255,12 @@
 </header>
 
 <main class="container">
-
   <div class="section-title">
     <h3>Categorías</h3>
-    <p>Compra en la tienda (Ecwid) o consulta por WhatsApp/Telegram con la categoría preseleccionada.</p>
+    <p>El contacto envía un mensaje fijo: <b>hola vengo de powerghost</b></p>
   </div>
 
   <section class="grid">
-    <!-- STREAMING -->
     <article class="card">
       <img src="assets/streaming.png" alt="Streaming & Entretenimiento Digital">
       <div class="card-content">
@@ -295,29 +268,11 @@
         <p>Gestión de cuentas y acceso a plataformas premium para ocio doméstico y móvil.</p>
         <div class="btn-row">
           <a class="btn primary small" href="#tienda">🛒 Comprar</a>
-          <button class="btn small" onclick="openModal('Streaming')">📩 Consultar</button>
-          <a class="btn wa small waBtn" data-cat="Streaming" href="#" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-                <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-          <a class="btn tg small" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-              </svg>
-            </span>
-            Telegram
-          </a>
+          <button class="btn small" onclick="openModal()">📩 Contactar</button>
         </div>
       </div>
     </article>
 
-    <!-- MÚSICA -->
     <article class="card">
       <img src="assets/musica.png" alt="Música Digital">
       <div class="card-content">
@@ -325,279 +280,108 @@
         <p>Plataformas musicales con bibliotecas amplias, optimizadas para móvil, PC y smart devices.</p>
         <div class="btn-row">
           <a class="btn primary small" href="#tienda">🛒 Comprar</a>
-          <button class="btn small" onclick="openModal('Música')">📩 Consultar</button>
-          <a class="btn wa small waBtn" data-cat="Música" href="#" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-                <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-          <a class="btn tg small" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-              </svg>
-            </span>
-            Telegram
-          </a>
+          <button class="btn small" onclick="openModal()">📩 Contactar</button>
         </div>
       </div>
     </article>
 
-    <!-- IA -->
     <article class="card">
       <img src="assets/ia.png" alt="Inteligencias Artificiales">
       <div class="card-content">
         <h2>🤖 Inteligencias Artificiales</h2>
-        <p>Herramientas de IA para productividad, creatividad y aprendizaje (usuarios y creadores).</p>
+        <p>Herramientas de IA para productividad, creatividad y aprendizaje.</p>
         <div class="btn-row">
           <a class="btn primary small" href="#tienda">🛒 Comprar</a>
-          <button class="btn small" onclick="openModal('IA')">📩 Consultar</button>
-          <a class="btn wa small waBtn" data-cat="IA" href="#" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-                <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-          <a class="btn tg small" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-              </svg>
-            </span>
-            Telegram
-          </a>
+          <button class="btn small" onclick="openModal()">📩 Contactar</button>
         </div>
       </div>
     </article>
 
-    <!-- LIBROS -->
     <article class="card">
       <img src="assets/libros.png" alt="Libros de Ficción">
       <div class="card-content">
         <h2>📚 Libros de Ficción</h2>
-        <p>Narrativa contemporánea, misterio, thriller, romance y más. Formato digital y físico.</p>
+        <p>Narrativa contemporánea, misterio, thriller, romance y más. Digital y físico.</p>
         <div class="btn-row">
           <a class="btn primary small" href="#tienda">🛒 Comprar</a>
-          <button class="btn small" onclick="openModal('Libros')">📩 Consultar</button>
-          <a class="btn wa small waBtn" data-cat="Libros" href="#" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-                <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-          <a class="btn tg small" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-              </svg>
-            </span>
-            Telegram
-          </a>
+          <button class="btn small" onclick="openModal()">📩 Contactar</button>
         </div>
       </div>
     </article>
 
-    <!-- VIDEOJUEGOS -->
     <article class="card">
       <img src="assets/videojuegos.png" alt="Videojuegos PS4 & PS5">
       <div class="card-content">
         <h2>🎮 Videojuegos PS4 & PS5</h2>
-        <p>Títulos actuales, clásicos y contenido digital. Para gamers casuales y exigentes.</p>
+        <p>Títulos actuales, clásicos y contenido digital.</p>
         <div class="btn-row">
           <a class="btn primary small" href="#tienda">🛒 Comprar</a>
-          <button class="btn small" onclick="openModal('Videojuegos')">📩 Consultar</button>
-          <a class="btn wa small waBtn" data-cat="Videojuegos" href="#" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-                <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-          <a class="btn tg small" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-              </svg>
-            </span>
-            Telegram
-          </a>
+          <button class="btn small" onclick="openModal()">📩 Contactar</button>
         </div>
       </div>
     </article>
 
-    <!-- ROPA -->
     <article class="card">
       <img src="assets/ropa.png" alt="Ropa Deportiva Oficial">
       <div class="card-content">
         <h2>👕 Ropa Deportiva Oficial</h2>
-        <p>Camisetas NBA, NFL, ligas de fútbol y selecciones. Para fans y coleccionistas.</p>
+        <p>Camisetas NBA, NFL, ligas de fútbol y selecciones.</p>
         <div class="btn-row">
           <a class="btn primary small" href="#tienda">🛒 Comprar</a>
-          <button class="btn small" onclick="openModal('Ropa')">📩 Consultar</button>
-          <a class="btn wa small waBtn" data-cat="Ropa" href="#" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-                <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-          <a class="btn tg small" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-              </svg>
-            </span>
-            Telegram
-          </a>
+          <button class="btn small" onclick="openModal()">📩 Contactar</button>
         </div>
       </div>
     </article>
 
-    <!-- ZAPATILLAS -->
     <article class="card">
       <img src="assets/zapatillas.png" alt="Zapatillas Deportivas">
       <div class="card-content">
         <h2>👟 Zapatillas Deportivas</h2>
-        <p>Modelos actuales para uso urbano y deportivo: comodidad, estilo y rendimiento.</p>
+        <p>Modelos actuales para uso urbano y deportivo: estilo y rendimiento.</p>
         <div class="btn-row">
           <a class="btn primary small" href="#tienda">🛒 Comprar</a>
-          <button class="btn small" onclick="openModal('Zapatillas')">📩 Consultar</button>
-          <a class="btn wa small waBtn" data-cat="Zapatillas" href="#" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none">
-                <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-                <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-              </svg>
-            </span>
-            WhatsApp
-          </a>
-          <a class="btn tg small" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-              </svg>
-            </span>
-            Telegram
-          </a>
+          <button class="btn small" onclick="openModal()">📩 Contactar</button>
         </div>
       </div>
     </article>
   </section>
 
-  <!-- TIENDA ECWID -->
   <section id="tienda" class="shop-wrap">
     <div class="shop-head">
       <div class="section-title" style="padding:0;">
         <h3>🛒 Tienda (Ecwid)</h3>
         <p>Compra directa y segura mediante Ecwid (ID: 118912352).</p>
       </div>
-
       <div class="actions">
-        <a class="btn primary" href="#tienda" onclick="openCart(); return false;">🧺 Ver carrito</a>
-        <button class="btn" onclick="openModal('General')">📩 Consultar</button>
-        <a class="btn wa" id="waShop" href="#" target="_blank" rel="noopener">
-          <span class="ico" aria-hidden="true">
-            <svg viewBox="0 0 32 32" fill="none">
-              <path fill="#ffffff" d="M19.11 17.47c-.23-.12-1.36-.67-1.57-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.84-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.47.1-.1.23-.27.35-.4.12-.13.15-.23.23-.38.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.71-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.34.12.15 1.6 2.44 3.88 3.43.54.23.96.37 1.29.47.54.17 1.03.15 1.42.09.43-.06 1.36-.56 1.56-1.1.19-.54.19-1 .13-1.1-.06-.1-.21-.15-.44-.27Z"/>
-              <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
-            </svg>
-          </span>
-          WhatsApp
-        </a>
-
-        <a class="btn tg" href="https://t.me/DPremiumorg" target="_blank" rel="noopener">
-          <span class="ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
-            </svg>
-          </span>
-          Telegram
-        </a>
+        <button class="btn primary" onclick="openCart(); return false;">🧺 Ver carrito</button>
+        <button class="btn" onclick="openModal()">📩 Contactar</button>
       </div>
     </div>
-
     <div class="ecwid-area">
       <div id="my-store-118912352"></div>
     </div>
   </section>
-
 </main>
 
 <footer>
   <img src="assets/logo.png" alt="PowerGhost Logo" class="logo-footer" />
-  <div>© <span id="year"></span> PowerGhost · Digital & Lifestyle Brand</div>
+  <div>© <span id="year"></span> PowerGhost</div>
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL SIMPLE -->
 <div class="modal-backdrop" id="modalBackdrop" onclick="backdropClose(event)">
   <div class="modal" onclick="event.stopPropagation()">
-    <header>
-      <div style="display:flex; gap:12px; align-items:center;">
-        <div style="font-weight:900; letter-spacing:.3px;">POWERGHOST</div>
-        <button class="close" onclick="closeModal()">✕ Cerrar</button>
-      </div>
-      <h3 id="modalTitle">Contacto</h3>
-      <p>Genera el mensaje y envíalo por WhatsApp o Telegram (o cópialo).</p>
-    </header>
+    <div class="modal-head">
+      <h3>Contactar</h3>
+      <button class="close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>Te abrimos WhatsApp o Telegram con este mensaje:</p>
+      <p style="margin:0 0 14px; font-weight:900; letter-spacing:.2px;">
+        hola vengo de powerghost
+      </p>
 
-    <div class="content">
-      <div class="row">
-        <div>
-          <label for="nombre">Nombre</label><br/>
-          <input id="nombre" placeholder="Tu nombre" autocomplete="name"/>
-        </div>
-        <div>
-          <label for="categoria">Categoría</label><br/>
-          <select id="categoria">
-            <option>General</option>
-            <option>Streaming</option>
-            <option>Música</option>
-            <option>IA</option>
-            <option>Libros</option>
-            <option>Videojuegos</option>
-            <option>Ropa</option>
-            <option>Zapatillas</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="row">
-        <div>
-          <label for="email">Email (opcional)</label><br/>
-          <input id="email" placeholder="tucorreo@ejemplo.com" autocomplete="email"/>
-        </div>
-        <div>
-          <label for="preferencia">Preferencia</label><br/>
-          <select id="preferencia">
-            <option>Quiero comprar</option>
-            <option>Quiero información</option>
-            <option>Disponibilidad / precio</option>
-            <option>Problema con un pedido</option>
-            <option>Otro</option>
-          </select>
-        </div>
-      </div>
-
-      <div style="margin-top:14px;">
-        <label for="mensaje">Mensaje</label><br/>
-        <textarea id="mensaje" placeholder="Plataforma, talla, juego, modelo, etc."></textarea>
-      </div>
-
-      <div class="actions">
+      <div class="modal-actions">
         <button class="btn wa" onclick="sendWhatsApp()">
           <span class="ico" aria-hidden="true">
             <svg viewBox="0 0 32 32" fill="none">
@@ -605,7 +389,7 @@
               <path fill="#ffffff" d="M16.02 5.33c-5.82 0-10.55 4.7-10.55 10.48 0 1.85.49 3.66 1.42 5.25L5.33 26.67l5.78-1.5a10.6 10.6 0 0 0 4.9 1.2h.01c5.82 0 10.55-4.7 10.55-10.48 0-5.78-4.73-10.56-10.55-10.56Zm0 19.08h-.01c-1.55 0-3.07-.41-4.41-1.19l-.32-.19-3.43.89.91-3.34-.21-.34a8.5 8.5 0 0 1-1.33-4.58c0-4.7 3.86-8.52 8.6-8.52 4.74 0 8.6 3.82 8.6 8.52 0 4.7-3.86 8.75-8.6 8.75Z"/>
             </svg>
           </span>
-          Enviar WhatsApp
+          WhatsApp
         </button>
 
         <button class="btn tg" onclick="openTelegram()">
@@ -614,135 +398,81 @@
               <path fill="#ffffff" d="M9.73 14.61 9.47 18.2c.39 0 .56-.17.77-.37l1.84-1.76 3.82 2.8c.7.39 1.2.18 1.38-.65l2.5-11.76c.24-1.1-.42-1.53-1.1-1.27L3.7 9.2c-1.02.39-1.01.95-.17 1.21l3.83 1.2 8.9-5.61c.42-.26.8-.12.49.15l-7.22 6.5Z"/>
             </svg>
           </span>
-          Abrir Telegram
+          Telegram
         </button>
-
-        <button class="btn primary" onclick="copyMessage()">📋 Copiar mensaje</button>
       </div>
 
       <div class="hint" id="hint">
-        WhatsApp abre con el mensaje ya escrito. Telegram abre @DPremiumorg (pega el mensaje).
+        WhatsApp abre con el mensaje escrito. En Telegram tendrás que pegarlo si tu app no lo rellena.
       </div>
     </div>
   </div>
 </div>
 
-<!-- JS: TODO el formulario funciona porque las funciones están en window -->
 <script>
-  // ========= CONFIG =========
   const STORE_ID = "118912352";
   const TELEGRAM_USER = "DPremiumorg";
 
-  // ⚠️ CAMBIA ESTO por tu número real SIN + y sin espacios. Ej: "34609036804"
+  // ✅ PON AQUÍ TU WHATSAPP REAL (sin +, sin espacios). Ej: "34609036804"
   const WHATSAPP_NUMBER = "34684721836";
 
-  // ========= HELPERS =========
+  const FIXED_MESSAGE = "hola vengo de powerghost";
+
   const $ = (id) => document.getElementById(id);
 
-  function buildWaLink(text){
-    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+  function buildWaLink(){
+    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(FIXED_MESSAGE);
   }
 
-  function buildMessage(){
-    const nombre = ($("nombre").value || "").trim();
-    const email  = ($("email").value || "").trim();
-    const cat    = ($("categoria").value || "General").trim();
-    const pref   = ($("preferencia").value || "Quiero información").trim();
-    const msg    = ($("mensaje").value || "").trim();
-
-    let out = "Hola, soy " + (nombre ? nombre : "un cliente") + ".\n\n";
-    out += "🔹 Categoría: " + cat + "\n";
-    out += "🔹 Motivo: " + pref + "\n";
-    if(email) out += "🔹 Email: " + email + "\n";
-    out += "\n📝 Detalles:\n" + (msg ? msg : "Quiero info (precios, disponibilidad y cómo funciona).");
-    out += "\n\n— Enviado desde la web de PowerGhost";
-    return out;
-  }
-
-  // ========= MODAL (GLOBAL) =========
-  window.openModal = function(cat){
-    $("modalTitle").textContent = "Contacto — " + (cat || "General");
-    $("categoria").value = cat || "General";
-    $("hint").textContent = "WhatsApp abre con el mensaje escrito. Telegram abre @DPremiumorg (pega el mensaje).";
+  // MODAL global
+  window.openModal = function(){
     $("modalBackdrop").style.display = "flex";
-    // foco útil
-    setTimeout(() => $("nombre").focus(), 50);
   };
-
   window.closeModal = function(){
     $("modalBackdrop").style.display = "none";
   };
-
   window.backdropClose = function(e){
     if(e.target === $("modalBackdrop")) window.closeModal();
   };
 
-  // ========= ACCIONES =========
   window.sendWhatsApp = function(){
     if(WHATSAPP_NUMBER.includes("X")){
       alert("Te falta configurar WHATSAPP_NUMBER dentro del index.html");
       return;
     }
-    window.open(buildWaLink(buildMessage()), "_blank", "noopener");
+    window.open(buildWaLink(), "_blank", "noopener");
   };
 
   window.openTelegram = function(){
+    // Telegram no siempre permite pre-rellenar texto. Abrimos el usuario.
     window.open("https://t.me/" + TELEGRAM_USER, "_blank", "noopener");
-    $("hint").textContent = "Telegram abierto. Pulsa “Copiar mensaje” y pégalo allí.";
+    $("hint").textContent = "Telegram abierto. Copia y pega: " + FIXED_MESSAGE;
   };
 
-  window.copyMessage = async function(){
-    const text = buildMessage();
-    try{
-      await navigator.clipboard.writeText(text);
-      $("hint").textContent = "✅ Mensaje copiado. Pégalo en Telegram o donde quieras.";
-    }catch(err){
-      // fallback: volcamos el texto en el textarea y seleccionamos
-      $("mensaje").value = text;
-      $("mensaje").focus();
-      $("mensaje").select();
-      $("hint").textContent = "⚠️ No se pudo copiar automático. He puesto el mensaje en el campo Mensaje (Ctrl+C).";
-    }
-  };
-
-  // ========= ECWID CART =========
   window.openCart = function(){
     location.hash = "#!/~/cart";
     const el = document.getElementById("tienda");
     if(el) el.scrollIntoView({behavior:"smooth"});
   };
 
-  // ========= INIT =========
   window.addEventListener("DOMContentLoaded", () => {
-    // año
     $("year").textContent = new Date().getFullYear();
 
-    // enlaces WhatsApp superiores
+    // top buttons direct
     const waTop = document.getElementById("waTop");
-    const waShop = document.getElementById("waShop");
+    const tgTop = document.getElementById("tgTop");
 
     if(waTop){
-      waTop.href = WHATSAPP_NUMBER.includes("X")
-        ? "#"
-        : buildWaLink("Hola, quiero información general sobre PowerGhost.");
-      if(WHATSAPP_NUMBER.includes("X")) waTop.addEventListener("click", (e)=>{ e.preventDefault(); alert("Configura WHATSAPP_NUMBER en index.html"); });
+      if(WHATSAPP_NUMBER.includes("X")){
+        waTop.addEventListener("click", (e)=>{ e.preventDefault(); alert("Configura WHATSAPP_NUMBER en index.html"); });
+      } else {
+        waTop.href = buildWaLink();
+      }
     }
 
-    if(waShop){
-      waShop.href = WHATSAPP_NUMBER.includes("X")
-        ? "#"
-        : buildWaLink("Hola, quiero información sobre la tienda de PowerGhost (Ecwid).");
-      if(WHATSAPP_NUMBER.includes("X")) waShop.addEventListener("click", (e)=>{ e.preventDefault(); alert("Configura WHATSAPP_NUMBER en index.html"); });
+    if(tgTop){
+      tgTop.href = "https://t.me/" + TELEGRAM_USER;
     }
-
-    // botones WhatsApp por categoría
-    document.querySelectorAll(".waBtn").forEach(btn=>{
-      const cat = btn.getAttribute("data-cat") || "General";
-      btn.href = WHATSAPP_NUMBER.includes("X")
-        ? "#"
-        : buildWaLink("Hola, quiero información sobre " + cat + " en PowerGhost.");
-      if(WHATSAPP_NUMBER.includes("X")) btn.addEventListener("click",(e)=>{e.preventDefault(); alert("Configura WHATSAPP_NUMBER en index.html");});
-    });
 
     // cerrar con ESC
     document.addEventListener("keydown", (e)=>{
@@ -754,7 +484,7 @@
   });
 </script>
 
-<!-- ECWID (integración estable) -->
+<!-- ECWID -->
 <script src="https://app.ecwid.com/script.js?118912352&data_platform=code&data_date=2025-01-01" charset="utf-8"></script>
 <script>
   xProductBrowser(
